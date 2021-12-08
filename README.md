@@ -6,6 +6,7 @@
 **Dependencies**:
 * ndisasm (part of nasm) in your path
 * docker
+* QEMU and GDB (if you want to run and it using the compileandrunscript)
 
 ### Unix like systems
 

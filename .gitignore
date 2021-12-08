@@ -20,3 +20,4 @@ ndisasm
 *.bin
 l.ld
 .vscode
+gdb
