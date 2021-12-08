@@ -12,3 +12,10 @@ objconv*
 *.s
 *.i
 toolchain
+*.dis
+disasm.asm
+*.f90
+*.exe
+ndisasm
+*.img
+*.bin
