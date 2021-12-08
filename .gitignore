@@ -1,0 +1,13 @@
+*.un~
+*.swp
+*.elf
+*.o
+objconv*
+*.out
+*.txt
+*~
+*.bat
+*.py
+*.p
+*.s
+*.i
