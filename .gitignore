@@ -19,3 +19,4 @@ disasm.asm
 ndisasm
 *.img
 *.bin
+l.ld
