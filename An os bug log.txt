@@ -1,0 +1,16 @@
+An os bug log
+
+Bug #0: function for finding file name in partition table not working
+Fix: ¯\_(ツ)_/¯
+
+Bug #1: bootloader not loading main system file
+Fix: when you read all the data on the current cylinder, you go to the next head, not the next cylinder
+
+Bug #2: c code not referring to right address
+Fix: use “section name vstart=0x1234” for re setting origin
+
+Bug #3: c code not returning from functions properly
+Fix: none
+
+Bug #4: clang doesnt like inline intel assembly
+Fix: use docker lmao
