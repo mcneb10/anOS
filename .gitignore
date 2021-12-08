@@ -6,7 +6,6 @@ objconv*
 *.out
 *.txt
 *~
-*.bat
 *.py
 *.p
 *.s
