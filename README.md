@@ -4,10 +4,13 @@
 ## How to build
 
 **Dependencies**:
-    * ndisasm (part of nasm) in your path
-    * docker
+* ndisasm (part of nasm) in your path
+* docker
 
 ### Unix like systems
+
 `./compile`
+
 ### Windows
+
 `compile.bat`
