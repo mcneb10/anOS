@@ -20,3 +20,4 @@ ndisasm
 *.img
 *.bin
 l.ld
+.vscode
