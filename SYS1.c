@@ -101,7 +101,6 @@ void println(const char* in) {
     print("\n");
 }
 void print(const char* in) {
-    putc(in[0]);
     for(uint16 i = 0; i < strlen(in);i++) {
         putc(in[i]);
     }
@@ -124,7 +123,7 @@ void out(uint16 port, uint8 data)
         : : "dN" (port), "a" (data)
     );
 }
-void SYS1ENTRY()
+void SYS1ENTRY(void)
 {
     screeninit();
     //asm ("mov ah, 0x0e");
@@ -142,6 +141,8 @@ void SYS1ENTRY()
     }*/
     //println(cmsg);  
     //__asm__ __volatile__ ("jmp $");
+    fgcolor=15;
+    bgcolor=1;
     putc('a');
     putc('d');
     putc(cmsg[1]);
