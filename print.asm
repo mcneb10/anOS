@@ -1,4 +1,4 @@
-print:
+asmprint:
     pusha 
 start:
     mov al, [bx]
@@ -20,7 +20,7 @@ newline:
     int 0x10
     popa
     ret
-println:
-  call print
+asmprintln:
+  call asmprint
   call newline
   ret

@@ -18,7 +18,7 @@ boot:
 	mov [drivenumber], dl
 	;print message
 	mov bx, msg1
-	call println
+	call asmprintln
 	;read "partition table" from disk
 	cld
 	mov ah, 2h; read mode
@@ -57,7 +57,7 @@ nextfile:
 loadsystemfile:
 	push bx
 	mov bx, found
-	call println
+	call asmprintln
 	pop bx
 	add bx, 16
 	;
@@ -82,7 +82,7 @@ loadsystemfile:
 rpdone:
 	;no core system file found
 	mov bx, error1;print error message
-	call print
+	call asmprint
 	jmp $;hang
 
 hello: db 'hello',0
