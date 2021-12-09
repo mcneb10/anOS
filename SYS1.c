@@ -17,7 +17,7 @@ void clrscreen(void) {
 }
 void screeninit(void) {
     bgcolor = 0;
-    fgcolor = 15;
+    fgcolor = 7;
     height = 25;
     width = 80;
     curY = 0;
@@ -101,6 +101,7 @@ void println(const char* in) {
     print("\n");
 }
 void print(const char* in) {
+    putc(in[0]);
     for(uint16 i = 0; i < strlen(in);i++) {
         putc(in[i]);
     }

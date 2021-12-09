@@ -11,8 +11,10 @@
 ### Unix like systems
 
 `./baseimg/buildbaseimg.sh`
+
 `./compile`
 
 ### Windows
-`baseimg/buildbaseimg.bat`
+`baseimg\buildbaseimg.bat`
+
 `compile.bat`

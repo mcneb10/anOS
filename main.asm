@@ -93,7 +93,7 @@ found: db 'Main System File found!',0
 drivenumber: db 0
 ;--ASM "libraries"
 %include "/opt/anos/print.asm";print functions
-%include "/opt/anos/basicconsts.asm";basic constants
+;%include "/opt/anos/basicconsts.asm";basic constants
 ;SYS1 must be in the first 17 sectors of partition table
 ;--End Of bootsector
 times 510-($-$$) db 0;pad with zeros

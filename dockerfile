@@ -16,6 +16,7 @@ RUN nasm -f elf32 -o /opt/anos/main.o /opt/anos/main.asm
 RUN gcc -m16 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables --save-temps -ffreestanding -mregparm=3 -static -fno-pie -c -o /opt/anos/SYS1.o /opt/anos/SYS1.c
 RUN ld /opt/anos/main.o /opt/anos/SYS1.o -m elf_i386 -T /opt/anos/link.ld -o /opt/anos/boot.bin
 RUN cp /opt/anos/boot.bin /opt/anos/boot.dis
+RUN wc -c /opt/anos/SYS1.o
 #RUN ld /opt/anos/SYS1.o -T /opt/anos/SYS1.ld -r -o /opt/anos/SYS1.o
 #RUN ld /opt/anos/main.o /opt/anos/SYS1.o -m elf_i386 --oformat binary -U -o /opt/anos/boot.bin
 ####RUN ld /opt/anos/main.o /opt/anos/SYS1.o -m elf_i386 -fno-pie -T /opt/anos/link.ld -o /opt/anos/boot.bin
