@@ -125,7 +125,8 @@ times 9216-($-$$) db 0;pad partition table accounting for boot sector and partit
 ;section sys1core vstart=0xa601
 ;%include "symbols.asm"
 ;;
-;mov byte [0xb8000], 'b'
+mov ebx, 0xb8000
+mov byte [ebx], 'b'
 cli
 ;mov eax, cr0
 ;or al, 1
