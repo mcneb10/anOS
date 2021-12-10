@@ -21,3 +21,4 @@ ndisasm
 l.ld
 .vscode
 gdb
+nasm
