@@ -17,7 +17,6 @@ RUN gcc -m16 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestand
 RUN gcc -m16 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestanding -mregparm=3 -static -fno-pie -masm=intel -S /opt/anos/SYS1.c
 RUN ld /opt/anos/main.o /opt/anos/SYS1.o -m elf_i386 -T /opt/anos/link.ld -o /opt/anos/boot.bin
 RUN cp /opt/anos/boot.bin /opt/anos/boot.dis
-RUN wc -c /opt/anos/SYS1.o
 #RUN ld /opt/anos/SYS1.o -T /opt/anos/SYS1.ld -r -o /opt/anos/SYS1.o
 #RUN ld /opt/anos/main.o /opt/anos/SYS1.o -m elf_i386 --oformat binary -U -o /opt/anos/boot.bin
 ####RUN ld /opt/anos/main.o /opt/anos/SYS1.o -m elf_i386 -fno-pie -T /opt/anos/link.ld -o /opt/anos/boot.bin
