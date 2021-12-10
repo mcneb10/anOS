@@ -52,7 +52,7 @@ compare:
 	jne compare
 	jmp loadsystemfile
 nextfile:
-	add bx, 20;24 decimal
+	add bx, 20
 	jmp findloop
 loadsystemfile:
 	push bx
@@ -117,7 +117,7 @@ dw 0xaa55;Tell BIOS this is bootable
 ;partition table end: 0xA600
 db 'ANOSFSHEADER1.0',0,0,0,0,0;partition header
 db 'SYS0BOOT       ',0,0,1,0,1
-db 'SYS1CORE       ',0,0,1,1,10;filename and file location pointer
+db 'SYS1CORE       ',0,0,1,1,20;filename and file location pointer
 times 9216-($-$$) db 0;pad partition table accounting for boot sector and partition header
 ;0x2400
 ;end partition/file table
@@ -126,7 +126,7 @@ times 9216-($-$$) db 0;pad partition table accounting for boot sector and partit
 ;%include "symbols.asm"
 ;;
 ;mov byte [0xb8000], 'b'
-;cli
+cli
 ;mov eax, cr0
 ;or al, 1
 ;mov cr0, eax
