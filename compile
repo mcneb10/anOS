@@ -20,7 +20,7 @@ docker rmi $(docker images -f "dangling=true" -q) > /dev/null 2>&1
 #toolchain/i386-elf-ld -m elf_i386 -o main.bin -Ttext 0x7c00 main.o SYS1.o --oformat binary
 #dissassembly
 rm disasm.asm
-./ndisasm -b 16 boot.dis >disasm.asm
+ndisasm -b 16 boot.dis >disasm.asm
 
 #python3 padding.py
 #python3 link.py
