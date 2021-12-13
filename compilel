@@ -1,0 +1,6 @@
+#!/bin/bash
+#compile bootloader
+nasm -f elf32 -o main.o main.asm
+gcc -m16 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestanding -mregparm=3 -static -fno-pie -c -o SYS1.o SYS1.c
+ld main.o SYS1.o -m elf_i386 -T link.ld -o boot.bin
+truncate -s 1474560 /opt/anos/boot.bin
