@@ -6,6 +6,15 @@ uint16 width; //80 column default
 uint16 height;//25 row default
 uint8 fgcolor;//text white by default
 uint8 bgcolor; //background black by default
+uint8 fbcombine(uint8 fg, uint8 bg) {
+    return fg | bg << 4;
+}
+uint16 cc2ve(unsigned char c, uint8 color) {
+    return (uint16)c | (uint16)color << 8;
+}
+uint16 curPosToIndex(uint16 x, uint16 y) {
+	return (y*width)+x;
+}
 void clrscreen(void) {
     for(uint16 y = 0; y < height; y++) {
         for(uint16 x = 0; x < width; x++) {
@@ -25,12 +34,7 @@ void screeninit(void) {
     screen = (uint16*)0xb8000;
     clrscreen();
 }
-uint8 fbcombine(uint8 fg, uint8 bg) {
-    return fg | bg << 4;
-}
-uint16 cc2ve(unsigned char c, uint8 color) {
-    return (uint16)c | (uint16)color << 8;
-}
+
 char* itoa(int i, char b[]){
     char const digit[] = "0123456789";
     char* p = b;
@@ -52,10 +56,6 @@ char* itoa(int i, char b[]){
 }
 void functest(void) {
     putc('X');
-}
-
-uint16 curPosToIndex(uint16 x, uint16 y) {
-	return (y*width)+x;
 }
 
 void putc(char c) {

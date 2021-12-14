@@ -1,3 +1,4 @@
 #!/bin/sh
-export DISPLAY=:0
-(trap 'kill 0' SIGINT; xterm -e 'gdb --command=./gdbcommands' & qemu-system-x86_64 -s -S -fda ./boot.bin)
+#(trap 'kill 0' SIGINT; gdb --command=./gdbcommands & qemu-system-x86_64 -s -S -fda ./boot.bin)
+qemu-system-x86_64 -s -S -fda ./boot.bin &
+gdb --command=./gdbcommands
