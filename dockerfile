@@ -13,8 +13,8 @@ COPY . /opt/anos/
 #RUN apt-get install -y unzip
 RUN nasm -f elf32 -o main.o main.asm
 #RUN ld main.o -T bootloader.ld -r -o main.o
-RUN gcc -m32 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestanding -mregparm=3 -static -fno-pie -c -o SYS1.o SYS1.c
-RUN gcc -m32 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestanding -mregparm=3 -static -fno-pie -masm=intel -S SYS1.c
+RUN gcc -m16 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestanding -mregparm=3 -static -fno-pie -c -o SYS1.o SYS1.c
+RUN gcc -m16 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestanding -mregparm=3 -static -fno-pie -masm=intel -S SYS1.c
 RUN ld main.o SYS1.o -m elf_i386 -T link.ld -o boot.bin
 RUN cp boot.bin boot.dis
 #RUN ld SYS1.o -T SYS1.ld -r -o SYS1.o
