@@ -129,6 +129,7 @@ mov ebx, 0xb8000
 mov byte [ebx], 'b'
 ;enter protected mode
 cli
+lgdt [gdtd]
 mov eax, cr0
 or al, 1
 mov cr0, eax
@@ -137,7 +138,23 @@ hlt
 gdt:
 	dq 0 ; null entry
 	; second entry
-	
+.code:
+	dw 0xffff ; limit low part
+	dw 0 ; base low part
+	db 0 ; base middle part
+	db 10011010b ; access
+	db 11001111b ; flags and limit 
+	db 0 ; base high part
+.data:
+	dw 0xffff ; limit low part
+	dw 0 ; base low part
+	db 0; base middle part
+	db 10010010b ; access
+	db 11001111b ; flags and limit
+	db 0 ; base high part
+gdtd:
+	dw gdtd - gdt - 1
+	dq gdt
 ;
 ;jmp _SYS1ENTRY;call _SYS1ENTRY
 
