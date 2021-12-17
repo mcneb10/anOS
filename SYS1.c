@@ -1,4 +1,4 @@
-#include "SYS1.h"
+#include "inc/stuff.h"
 uint16* screen;
 uint16 curX;
 uint16 curY;
@@ -15,6 +15,23 @@ uint16 cc2ve(unsigned char c, uint8 color) {
 uint16 curPosToIndex(uint16 x, uint16 y) {
 	return (y*width)+x;
 }
+uint8 in(uint16 port)
+{
+    unsigned char ret;
+    asm volatile (
+        "inb %1, %0"
+        : "=a" (ret)
+        : "dN" (port)
+    );
+    return ret;
+}
+void out(uint16 port, uint8 data)
+{
+    asm volatile (
+        "outb %1, %0"
+        : : "dN" (port), "a" (data)
+    );
+}
 void clrscreen(void) {
     for(uint16 y = 0; y < height; y++) {
         for(uint16 x = 0; x < width; x++) {
@@ -23,6 +40,10 @@ void clrscreen(void) {
     }
     curX = 0;
     curY = 0;
+}
+void disablecursor(void) {
+	out(0x3D4, 0x0A);
+	out(0x3D5, 0x20);
 }
 void screeninit(void) {
     bgcolor = 0;
@@ -33,6 +54,7 @@ void screeninit(void) {
     curX = 0;
     screen = (uint16*)0xb8000;
     clrscreen();
+    disablecursor();
 }
 
 char* itoa(int i, char b[]){
@@ -54,10 +76,6 @@ char* itoa(int i, char b[]){
     }while(i);
     return b;
 }
-void functest(void) {
-    putc('X');
-}
-
 void putc(char c) {
     if(c=='\n') {
         curX = 0;
@@ -90,39 +108,29 @@ void putc(char c) {
         curX++;
     }
 }
+void functest(void) {
+    putc('X');
+}
+
+
 uint16 strlen(const char* in) {
     uint16 i = 0;
     while(in[i]) 
 	    i++;
     return i;
 }
-void println(const char* in) {
-    print(in);
-    print("\n");
-}
 void print(const char* in) {
     for(uint16 i = 0; i < strlen(in);i++) {
         putc(in[i]);
     }
 }
+void println(const char* in) {
+    print(in);
+    print("\n");
+}
 
-uint8 in(uint16 port)
-{
-    unsigned char ret;
-    asm volatile (
-        "inb %1, %0"
-        : "=a" (ret)
-        : "dN" (port)
-    );
-    return ret;
-}
-void out(uint16 port, uint8 data)
-{
-    asm volatile (
-        "outb %1, %0"
-        : : "dN" (port), "a" (data)
-    );
-}
+
+
 void SYS1ENTRY(void)
 {
     screeninit();
