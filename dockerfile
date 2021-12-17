@@ -2,7 +2,7 @@ FROM anos-macos-build-baseimg
 # dockerfile for compiling since macos is wierd
 #LABEL author="mcneb10"
 #LABEL name="MacOSBuild"
-#WORKDIR /opt/docker/anos/
+WORKDIR /opt/anos/
 COPY . /opt/anos/
 #RUN apt-get update
 #RUN apt-get install -y gcc
@@ -11,7 +11,6 @@ COPY . /opt/anos/
 #RUN apt-get install -y intel2gas
 #RUN apt-get install -y wget
 #RUN apt-get install -y unzip
-RUN cd /opt/anos/
 RUN nasm -f elf32 -o main.o main.asm
 #RUN ld main.o -T bootloader.ld -r -o main.o
 RUN gcc -m16 -nostdlib -Wall -Wextra -fno-asynchronous-unwind-tables -ffreestanding -mregparm=3 -static -fno-pie -c -o SYS1.o SYS1.c
