@@ -92,7 +92,7 @@ error1: db 'FATAL BOOTLOADER ERROR!',0x0D,0x0A,'MAIN SYSTEM FILE NOT FOUND',0x0D
 found: db 'Main System File found!',0
 drivenumber: db 0
 ;--ASM "libraries"
-%include "/opt/anos/print.asm";print functions
+%include "print.asm";print functions
 ;%include "/opt/anos/basicconsts.asm";basic constants
 ;SYS1 must be in the first 17 sectors of partition table
 ;--End Of bootsector
@@ -127,13 +127,18 @@ times 9216-($-$$) db 0;pad partition table accounting for boot sector and partit
 ;;
 mov ebx, 0xb8000
 mov byte [ebx], 'b'
+;enter protected mode
 cli
-;mov eax, cr0
-;or al, 1
-;mov cr0, eax
+mov eax, cr0
+or al, 1
+mov cr0, eax
 call SYS1ENTRY
 hlt
-;;
+gdt:
+	dq 0 ; null entry
+	; second entry
+	
+;
 ;jmp _SYS1ENTRY;call _SYS1ENTRY
 
 ;%include "SYS1.asm"
