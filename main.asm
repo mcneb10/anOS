@@ -133,6 +133,8 @@ lgdt [gdtd]
 mov eax, cr0
 or al, 1
 mov cr0, eax
+jmp 0x08:fl
+fl:
 call SYS1ENTRY
 hlt
 gdt:
